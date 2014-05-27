@@ -1,0 +1,27 @@
+
+           <project name="MyProject" default="all" >
+
+                 <target name="make.dirs" description="Make some dirs">
+                         <mkdir dir="build"/>
+                         <mkdir dir="build/class"/>
+                 </target>
+
+<target name="compile" description="compile java"  depends="make.dirs">
+                         <javac destdir="build/class">
+                                 <src path="src"/>
+                         </javac>
+                 </target>
+
+<target name="jar" depends="compile">
+        <jar destfile="hello.jar" basedir="build/class">
+            <manifest>
+                <attribute name="Main-Class" value="HelloWorld" />
+            </manifest>
+        </jar>
+    </target>
+
+<target name="all" description="Do the build"  depends="jar">
+                         <echo>I'm building my software</echo>
+                 </target>
+
+</project>
